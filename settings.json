@@ -1,0 +1,19 @@
+{
+  "drivers": [
+    "Anthony", "Beau", "Craig", "Gibbsy", "H", "Jack", "Jake",
+    "Jock", "Mark", "Nic", "Radar", "Ryan", "Shane", "Shanon",
+    "Steve", "Stewy", "Taw", "Tom", "Travis", "Trevor"
+  ],
+  "farms": [
+    "Agright", "Angry", "Brialei", "Channel", "Fairview", "Far",
+    "Foott South", "Ford", "GV1 Joyces Creek", "GV2 Grandview",
+    "Gleeson", "Hydor", "Lakeside", "Lesmis", "Lynian", "MacKenzie",
+    "Madick", "Mannes", "McDonald", "Osborne 1", "Osborne 2", "Osborne 3",
+    "Pavilion 10", "Pavilion 7", "Pavilion 8", "Pavilion 9",
+    "Pyramid", "Riverside", "Sanlea", "Scott", "Stockdale",
+    "T-Farm", "Zanelli", "Other"
+  ],
+  "mechanics": [
+    "Jack Carboon", "Mark Cummings", "Shane Guy", "Tom Bellenger"
+  ]
+}
