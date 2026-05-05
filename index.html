@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Sheet — Workshop</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --black: #111111;
+    --dark: #1a1a1a;
+    --panel: #222222;
+    --border: #333333;
+    --accent: #e8a020;
+    --accent-dark: #b87d10;
+    --text: #e8e8e8;
+    --muted: #888888;
+    --green: #4caf50;
+    --red: #e53935;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  header {
+    background: var(--dark);
+    border-bottom: 3px solid var(--accent);
+    padding: 16px 20px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  header p {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+
+  /* Sections */
+  .section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-header .tag {
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .section-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .section-body { padding: 16px; }
+
+  /* Fields */
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  label span.req { color: var(--accent); margin-left: 2px; }
+
+  input, select, textarea {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    padding: 10px 12px;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  /* Job entries */
+  .job-entry {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 14px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .job-entry .entry-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.15s;
+  }
+
+  .remove-btn:hover { border-color: var(--red); color: var(--red); }
+
+  .add-btn {
+    width: 100%;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 5px;
+    color: var(--muted);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Parts */
+  .parts-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .parts-grid input { font-size: 13px; }
+
+  .parts-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .parts-header span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .qty-input { width: 60px; text-align: center; }
+
+  /* Consumables */
+  .consumable-item {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px;
+  }
+
+  .consumable-item label {
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* Mechanics */
+  .mechanic-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+
+  .mechanic-row:last-child { margin-bottom: 0; }
+
+  .mechanic-name {
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .mechanic-role {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .toggle input { opacity: 0; width: 0; height: 0; }
+
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--border);
+    border-radius: 24px;
+    transition: 0.2s;
+  }
+
+  .toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--muted);
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+
+  .toggle input:checked + .toggle-slider { background: var(--accent); }
+  .toggle input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+    background: var(--black);
+  }
+
+  /* Labour hours — per mechanic */
+  .mech-labour-card {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .mech-labour-card.active { border-color: var(--accent); }
+
+  .mech-labour-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .mech-labour-header .mech-info { display: flex; align-items: center; gap: 12px; }
+
+  .mech-labour-header .mech-name-lbl {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .mech-labour-header .mech-role-lbl {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .involvement-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--border);
+    color: var(--muted);
+  }
+
+  .involvement-badge.full { background: #1a3a1a; color: #4caf50; }
+  .involvement-badge.part { background: #3a2e10; color: var(--accent); }
+  .involvement-badge.none { background: var(--border); color: var(--muted); }
+
+  .mech-labour-body {
+    display: none;
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .mech-labour-body.open { display: block; }
+
+  .involvement-select {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .inv-btn {
+    flex: 1;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+
+  .inv-btn.sel-full { background: #1a3a1a; border-color: #4caf50; color: #4caf50; }
+  .inv-btn.sel-part { background: #3a2e10; border-color: var(--accent); color: var(--accent); }
+  .inv-btn.sel-none { background: #2a1a1a; border-color: var(--red); color: var(--red); }
+
+  .time-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    align-items: end;
+  }
+
+  .labour-total-bar {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  .labour-total-bar .tot-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .labour-total-bar .tot-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .hrs-pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: #3a2e10;
+    border-radius: 3px;
+    padding: 2px 8px;
+    min-width: 54px;
+    text-align: center;
+  }
+
+  .labour-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* Submit */
+  .submit-btn {
+    width: 100%;
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover { background: var(--accent-dark); }
+  .submit-btn:active { transform: scale(0.99); }
+
+  /* Success screen */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .success-screen.show { display: block; }
+  .success-screen .tick {
+    font-size: 64px;
+    margin-bottom: 20px;
+  }
+
+  .success-screen h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+
+  .success-screen p { color: var(--muted); margin-bottom: 24px; }
+
+  .new-btn {
+    background: none;
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .new-btn:hover { background: var(--accent); color: var(--black); }
+
+  /* Preview modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    overflow-y: auto;
+    padding: 20px 16px;
+  }
+
+  .modal-overlay.show { display: block; }
+
+  .modal {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .modal-header {
+    background: var(--black);
+    border-bottom: 2px solid var(--accent);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-header h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .modal-close {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-body { padding: 20px 18px; font-size: 14px; line-height: 1.7; }
+
+  .preview-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .preview-row:last-child { border-bottom: none; }
+
+  .preview-key {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 130px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .preview-val { color: var(--text); }
+
+  .modal-footer {
+    padding: 14px 18px;
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+  }
+
+  .modal-footer button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 5px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-back { background: var(--panel); color: var(--text); border: 1px solid var(--border) !important; }
+  .btn-confirm { background: var(--accent); color: var(--black); }
+
+  /* Validation highlight */
+  input.invalid, select.invalid, textarea.invalid {
+    border-color: var(--red) !important;
+  }
+
+  .error-msg {
+    color: var(--red);
+    font-size: 11px;
+    margin-top: 4px;
+    display: none;
+  }
+
+  .error-msg.show { display: block; }
+
+  @media (max-width: 420px) {
+    .row-2 { grid-template-columns: 1fr; }
+    .row-3 { grid-template-columns: 1fr 1fr; }
+    .labour-input-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Story Sheet</h1>
+  <p>Repair &amp; Maintenance Report</p>
+</header>
+
+<div class="container" id="formContainer">
+
+  <!-- Equipment Info -->
+  <div class="section">
+    <div class="section-header">
+      <span class="tag">01</span>
+      <h2>Equipment Details</h2>
+    </div>
+    <div class="section-body">
+      <div class="row-2">
+        <div class="field">
+          <label>Rego # <span class="req">*</span></label>
+          <input type="text" id="rego" placeholder="e.g. XW08CO">
+        </div>
+        <div class="field">
+          <label>Fleet # <span class="req">*</span></label>
+          <input type="text" id="fleet" placeholder="e.g. PM8">
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label>Date <span class="req">*</span></label>
+          <input type="date" id="jobDate">
+        </div>
+        <div class="field">
+          <label>Odometer / Hrs</label>
+          <input type="text" id="odometer" placeholder="e.g. 682483">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jobs -->
+  <div class="section">
+    <div class="section-header">
+      <span class="tag">02</span>
+      <h2>Problem / Cause / Rectification</h2>
+    </div>
+    <div class="section-body">
+      <div id="jobEntries"><div class="job-entry" id="job_1">
+      <div class="entry-num">Job #1</div>
+      
+      <div class="field">
+        <label>Problem <span class="req">*</span></label>
+        <textarea class="job-problem" placeholder="Describe the fault or service required..." style="min-height:60px"></textarea>
+      </div>
+      <div class="field">
+        <label>Rectification <span class="req">*</span></label>
+        <textarea class="job-rect" placeholder="What was done to fix it..." style="min-height:60px"></textarea>
+      </div>
+    </div></div>
+      <button class="add-btn" onclick="addJob()">+ Add Job Entry</button>
+    </div>
+  </div>
+
+
+
+  <!-- Parts -->
+  <div class="section">
+    <div class="section-header">
+      <span class="tag">04</span>
+      <h2>Parts Used</h2>
+    </div>
+    <div class="section-body">
+      <div class="parts-header">
+        <span>Part #</span>
+        <span>Description</span>
+        <span>Qty</span>
+      </div>
+      <div id="partsEntries"><div class="parts-grid" id="part_1">
+      <input type="text" class="part-num" placeholder="Part #">
+      <input type="text" class="part-desc" placeholder="Description">
+      <input type="number" class="qty-input part-qty" placeholder="1" min="1" style="width:60px">
+    </div></div>
+      <button class="add-btn" onclick="addPart()">+ Add Part</button>
+    </div>
+  </div>
+
+  <!-- Consumables -->
+  <div class="section">
+    <div class="section-header">
+      <span class="tag">05</span>
+      <h2>Consumables</h2>
+    </div>
+    <div class="section-body">
+      <div class="row-2" style="margin-bottom:12px">
+        <div class="consumable-item">
+          <label>Transmission Oil</label>
+          <div class="row-2">
+            <div class="field">
+              <label>Part #</label>
+              <input type="text" id="transOilPart" placeholder="Part #">
+            </div>
+            <div class="field">
+              <label>Qty (L)</label>
+              <input type="number" id="transOilQty" placeholder="0" min="0" step="0.5">
+            </div>
+          </div>
+        </div>
+        <div class="consumable-item">
+          <label>Diff Oil</label>
+          <div class="row-2">
+            <div class="field">
+              <label>Part #</label>
+              <input type="text" id="diffOilPart" placeholder="Part #">
+            </div>
+            <div class="field">
+              <label>Qty (L)</label>
+              <input type="number" id="diffOilQty" placeholder="0" min="0" step="0.5">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-3">
+        <div class="consumable-item">
+          <label>Grease</label>
+          <div class="field">
+            <label>Part #</label>
+            <input type="text" id="greasePart" placeholder="Part #">
+          </div>
+          <div class="field">
+            <label>Qty (kg)</label>
+            <input type="number" id="greaseQty" placeholder="0" min="0" step="0.25">
+          </div>
+        </div>
+        <div class="consumable-item">
+          <label>Engine Oil</label>
+          <div class="field">
+            <label>Part #</label>
+            <input type="text" id="engineOilPart" placeholder="Part #">
+          </div>
+          <div class="field">
+            <label>Qty (L)</label>
+            <input type="number" id="engineOilQty" placeholder="0" min="0" step="0.5">
+          </div>
+        </div>
+        <div class="consumable-item">
+          <label>Coolant</label>
+          <div class="field">
+            <label>Part #</label>
+            <input type="text" id="coolantPart" placeholder="Part #">
+          </div>
+          <div class="field">
+            <label>Qty (L)</label>
+            <input type="number" id="coolantQty" placeholder="0" min="0" step="0.5">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mechanics & Labour Hours (combined) -->
+  <div class="section">
+    <div class="section-header">
+      <span class="tag">06</span>
+      <h2>Mechanics &amp; Labour Hours</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Tap each mechanic to set their involvement and log their hours individually.</p>
+
+      <!-- Mark -->
+      <div class="mech-labour-card" id="card_mark">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;mark&#39;)">
+          <div class="mech-info">
+            <div>
+              <div class="mech-name-lbl">Mark Cummings</div>
+              <div class="mech-role-lbl">Workshop Manager</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="hrs-pill" id="pill_mark">— hrs</span>
+            <span class="involvement-badge none" id="badge_mark">Not set</span>
+          </div>
+        </div>
+        <div class="mech-labour-body" id="body_mark">
+          <div class="involvement-select">
+            <button class="inv-btn" id="inv_mark_full" onclick="setInvolvement(&#39;mark&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_mark_part" onclick="setInvolvement(&#39;mark&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_mark_none" onclick="setInvolvement(&#39;mark&#39;,&#39;none&#39;)">Not Involved</button>
+          </div>
+          <div class="time-row" id="times_mark">
+            <div class="field">
+              <label>Start</label>
+              <input type="time" id="start_mark" oninput="calcMechHrs(&#39;mark&#39;)">
+            </div>
+            <div class="field">
+              <label>Finish</label>
+              <input type="time" id="finish_mark" oninput="calcMechHrs(&#39;mark&#39;)">
+            </div>
+            <div class="field">
+              <label>Total</label>
+              <div class="labour-total-bar" style="padding:9px 12px;">
+                <span class="tot-val" id="total_mark" style="font-size:18px;">—</span>
+                <span class="tot-label">hrs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tom -->
+      <div class="mech-labour-card" id="card_tom">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;tom&#39;)">
+          <div class="mech-info">
+            <div>
+              <div class="mech-name-lbl">Tom Bellenger</div>
+              <div class="mech-role-lbl">Mechanic</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="hrs-pill" id="pill_tom">— hrs</span>
+            <span class="involvement-badge none" id="badge_tom">Not set</span>
+          </div>
+        </div>
+        <div class="mech-labour-body" id="body_tom">
+          <div class="involvement-select">
+            <button class="inv-btn" id="inv_tom_full" onclick="setInvolvement(&#39;tom&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_tom_part" onclick="setInvolvement(&#39;tom&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_tom_none" onclick="setInvolvement(&#39;tom&#39;,&#39;none&#39;)">Not Involved</button>
+          </div>
+          <div class="time-row" id="times_tom">
+            <div class="field">
+              <label>Start</label>
+              <input type="time" id="start_tom" oninput="calcMechHrs(&#39;tom&#39;)">
+            </div>
+            <div class="field">
+              <label>Finish</label>
+              <input type="time" id="finish_tom" oninput="calcMechHrs(&#39;tom&#39;)">
+            </div>
+            <div class="field">
+              <label>Total</label>
+              <div class="labour-total-bar" style="padding:9px 12px;">
+                <span class="tot-val" id="total_tom" style="font-size:18px;">—</span>
+                <span class="tot-label">hrs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shane -->
+      <div class="mech-labour-card" id="card_shane">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;shane&#39;)">
+          <div class="mech-info">
+            <div>
+              <div class="mech-name-lbl">Shane Guy</div>
+              <div class="mech-role-lbl">Mechanic</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="hrs-pill" id="pill_shane">— hrs</span>
+            <span class="involvement-badge none" id="badge_shane">Not set</span>
+          </div>
+        </div>
+        <div class="mech-labour-body" id="body_shane">
+          <div class="involvement-select">
+            <button class="inv-btn" id="inv_shane_full" onclick="setInvolvement(&#39;shane&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_shane_part" onclick="setInvolvement(&#39;shane&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_shane_none" onclick="setInvolvement(&#39;shane&#39;,&#39;none&#39;)">Not Involved</button>
+          </div>
+          <div class="time-row" id="times_shane">
+            <div class="field">
+              <label>Start</label>
+              <input type="time" id="start_shane" oninput="calcMechHrs(&#39;shane&#39;)">
+            </div>
+            <div class="field">
+              <label>Finish</label>
+              <input type="time" id="finish_shane" oninput="calcMechHrs(&#39;shane&#39;)">
+            </div>
+            <div class="field">
+              <label>Total</label>
+              <div class="labour-total-bar" style="padding:9px 12px;">
+                <span class="tot-val" id="total_shane" style="font-size:18px;">—</span>
+                <span class="tot-label">hrs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combined total -->
+      <div class="labour-total-bar" style="margin-top:12px;border-color:var(--accent);border-width:2px;">
+        <span class="tot-label" style="font-size:13px;">Combined Labour Total</span>
+        <span class="tot-val" id="combinedTotal">— hrs</span>
+      </div>
+
+      <!-- Jack -->
+      <div class="mech-labour-card" id="card_jack">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;jack&#39;)">
+          <div class="mech-info">
+            <div>
+              <div class="mech-name-lbl">Jack Carboon</div>
+              <div class="mech-role-lbl">Mechanic</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="hrs-pill" id="pill_jack">— hrs</span>
+            <span class="involvement-badge none" id="badge_jack">Not set</span>
+          </div>
+        </div>
+        <div class="mech-labour-body" id="body_jack">
+          <div class="involvement-select">
+            <button class="inv-btn" id="inv_jack_full" onclick="setInvolvement(&#39;jack&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_jack_part" onclick="setInvolvement(&#39;jack&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_jack_none" onclick="setInvolvement(&#39;jack&#39;,&#39;none&#39;)">Not Involved</button>
+          </div>
+          <div class="time-row" id="times_jack">
+            <div class="field">
+              <label>Start</label>
+              <input type="time" id="start_jack" oninput="calcMechHrs(&#39;jack&#39;)">
+            </div>
+            <div class="field">
+              <label>Finish</label>
+              <input type="time" id="finish_jack" oninput="calcMechHrs(&#39;jack&#39;)">
+            </div>
+            <div class="field">
+              <label>Total</label>
+              <div class="labour-total-bar" style="padding:9px 12px;">
+                <span class="tot-val" id="total_jack" style="font-size:18px;">—</span>
+                <span class="tot-label">hrs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="section">
+    <div class="section-header">
+      <span class="tag">07</span>
+      <h2>Additional Notes</h2>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Notes / Comments</label>
+        <textarea id="notes" placeholder="Any additional information, follow-up required, parts on order, etc."></textarea>
+      </div>
+      <div class="field">
+        <label>Completed by <span class="req">*</span></label>
+        <select id="completedBy">
+          <option value="">— Select —</option>
+          <option>Mark Cummings</option>
+          <option>Tom Bellenger</option>
+          <option>Shane Guy</option>
+          <option>Jack Carboon</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="reviewSheet()">Review &amp; Submit</button>
+
+</div>
+
+<!-- Success Screen -->
+<div class="container">
+  <div class="success-screen" id="successScreen">
+    <div class="tick">✅</div>
+    <h2>Story Sheet Submitted</h2>
+    <p>Job record saved and ready for the recap.<br>Labour hours captured successfully.</p>
+    <button class="new-btn" onclick="resetForm()">Start New Sheet</button>
+  </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Confirm &amp; Submit</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="previewBody"></div>
+    <div class="modal-footer">
+      <button class="btn-back modal-footer" style="background:var(--panel);color:var(--text);border:1px solid var(--border);padding:12px;border-radius:5px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex:1;" onclick="closeModal()">← Back</button>
+      <button class="btn-confirm" style="background:var(--accent);color:var(--black);border:none;padding:12px;border-radius:5px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex:1;" onclick="submitSheet()">Confirm Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let jobCount = 0;
+  let partCount = 0;
+  const mechanics = ['mark','tom','shane','jack'];
+  const mechState = {
+    mark: { involvement: null, start: '', finish: '', hrs: null },
+    tom:  { involvement: null, start: '', finish: '', hrs: null },
+    shane:{ involvement: null, start: '', finish: '', hrs: null },
+    jack: { involvement: null, start: '', finish: '', hrs: null },
+  };
+
+  window.onload = () => {
+    document.getElementById('jobDate').value = new Date().toISOString().split('T')[0];
+    addJob();
+    addPart();
+  };
+
+  // ── Mechanic cards ───────────────────────────────────────────
+  function toggleMechCard(id) {
+    const body = document.getElementById('body_' + id);
+    body.classList.toggle('open');
+    document.getElementById('card_' + id).classList.toggle('active', body.classList.contains('open'));
+  }
+
+  function setInvolvement(id, level) {
+    mechState[id].involvement = level;
+    // Badge
+    const badge = document.getElementById('badge_' + id);
+    badge.className = 'involvement-badge ' + level;
+    badge.textContent = level === 'full' ? 'Full Shift' : level === 'part' ? 'Part Shift' : 'Not Involved';
+    // Buttons
+    ['full','part','none'].forEach(l => {
+      const btn = document.getElementById(`inv_${id}_${l}`);
+      btn.className = 'inv-btn' + (l === level ? ` sel-${l}` : '');
+    });
+    // Show/hide times
+    const timesEl = document.getElementById('times_' + id);
+    if (level === 'none') {
+      timesEl.style.display = 'none';
+      mechState[id].hrs = 0;
+      document.getElementById('pill_' + id).textContent = '0 hrs';
+      document.getElementById('total_' + id).textContent = '0';
+    } else {
+      timesEl.style.display = 'grid';
+    }
+    updateCombined();
+  }
+
+  function calcMechHrs(id) {
+    const s = document.getElementById('start_' + id).value;
+    const f = document.getElementById('finish_' + id).value;
+    mechState[id].start = s;
+    mechState[id].finish = f;
+    if (!s || !f) {
+      document.getElementById('total_' + id).textContent = '—';
+      document.getElementById('pill_' + id).textContent = '— hrs';
+      mechState[id].hrs = null;
+      updateCombined(); return;
+    }
+    const [sh,sm] = s.split(':').map(Number);
+    const [fh,fm] = f.split(':').map(Number);
+    const mins = (fh*60+fm) - (sh*60+sm);
+    if (mins <= 0) {
+      document.getElementById('total_' + id).textContent = '!';
+      document.getElementById('pill_' + id).textContent = 'Check';
+      mechState[id].hrs = null;
+      updateCombined(); return;
+    }
+    const val = Math.round(mins / 6) / 10;
+    mechState[id].hrs = val;
+    document.getElementById('total_' + id).textContent = val;
+    document.getElementById('pill_' + id).textContent = val + ' hrs';
+    updateCombined();
+  }
+
+  function updateCombined() {
+    let total = 0; let anyNull = false;
+    mechanics.forEach(id => {
+      const s = mechState[id];
+      if (s.involvement === 'none') return;
+      if (s.hrs === null) { anyNull = true; return; }
+      total += s.hrs;
+    });
+    const el = document.getElementById('combinedTotal');
+    const allNotInvolved = mechanics.every(id => mechState[id].involvement === 'none');
+    el.textContent = allNotInvolved ? '0 hrs' : (anyNull ? '— hrs' : total.toFixed(1) + ' hrs');
+  }
+
+  // ── Job entries ──────────────────────────────────────────────
+  function addJob() {
+    jobCount++;
+    const div = document.createElement('div');
+    div.className = 'job-entry';
+    div.id = 'job_' + jobCount;
+    div.innerHTML = `
+      <div class="entry-num">Job #${jobCount}</div>
+      ${jobCount > 1 ? `<button class="remove-btn" onclick="removeEntry('job_${jobCount}')">✕</button>` : ''}
+      <div class="field">
+        <label>Problem <span class="req">*</span></label>
+        <textarea class="job-problem" placeholder="Describe the fault or service required..." style="min-height:60px"></textarea>
+      </div>
+      <div class="field">
+        <label>Rectification <span class="req">*</span></label>
+        <textarea class="job-rect" placeholder="What was done to fix it..." style="min-height:60px"></textarea>
+      </div>
+    `;
+    document.getElementById('jobEntries').appendChild(div);
+  }
+
+  function addPart() {
+    partCount++;
+    const div = document.createElement('div');
+    div.className = 'parts-grid';
+    div.id = 'part_' + partCount;
+    div.innerHTML = `
+      <input type="text" class="part-num" placeholder="Part #">
+      <input type="text" class="part-desc" placeholder="Description">
+      <input type="number" class="qty-input part-qty" placeholder="1" min="1" style="width:60px">
+    `;
+    document.getElementById('partsEntries').appendChild(div);
+  }
+
+  function removeEntry(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  // ── Validation ───────────────────────────────────────────────
+  function validate() {
+    let ok = true;
+    ['rego','fleet','jobDate','completedBy'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.classList.add('invalid'); ok = false; }
+      else el.classList.remove('invalid');
+    });
+    document.querySelectorAll('.job-problem').forEach(el => {
+      if (!el.value.trim()) { el.classList.add('invalid'); ok = false; }
+      else el.classList.remove('invalid');
+    });
+    // At least one mechanic must be set
+    const anySet = mechanics.some(id => mechState[id].involvement !== null);
+    if (!anySet) { ok = false; }
+    return ok;
+  }
+
+  // ── Form data ────────────────────────────────────────────────
+  function getFormData() {
+    const jobs = [];
+    document.querySelectorAll('.job-entry').forEach(entry => {
+      const p = entry.querySelector('.job-problem')?.value.trim();
+      const r = entry.querySelector('.job-rect')?.value.trim();
+      if (p) jobs.push({ problem: p, rectification: r });
+    });
+    const parts = [];
+    document.querySelectorAll('.parts-grid').forEach(row => {
+      const num = row.querySelector('.part-num')?.value.trim();
+      const desc = row.querySelector('.part-desc')?.value.trim();
+      const qty = row.querySelector('.part-qty')?.value.trim();
+      if (num || desc) parts.push({ num, desc, qty: qty || '1' });
+    });
+    const mechNames = { mark:'Mark Cummings', tom:'Tom Bellenger', shane:'Shane Guy', jack:'Jack Carboon' };
+    const labourBreakdown = mechanics.map(id => ({
+      name: mechNames[id],
+      involvement: mechState[id].involvement || 'not set',
+      start: mechState[id].start,
+      finish: mechState[id].finish,
+      hrs: mechState[id].hrs,
+    }));
+    return {
+      rego: document.getElementById('rego').value.trim().toUpperCase(),
+      fleet: document.getElementById('fleet').value.trim().toUpperCase(),
+      date: document.getElementById('jobDate').value,
+      odometer: document.getElementById('odometer').value.trim(),
+      jobs, parts,
+      labour: labourBreakdown,
+      consumables: {
+        transOil: { part: document.getElementById('transOilPart').value, qty: document.getElementById('transOilQty').value },
+        diffOil:  { part: document.getElementById('diffOilPart').value,  qty: document.getElementById('diffOilQty').value  },
+        grease:   { part: document.getElementById('greasePart').value,   qty: document.getElementById('greaseQty').value   },
+        engineOil:{ part: document.getElementById('engineOilPart').value, qty: document.getElementById('engineOilQty').value },
+        coolant:  { part: document.getElementById('coolantPart').value,  qty: document.getElementById('coolantQty').value  },
+      },
+      notes: document.getElementById('notes').value.trim(),
+      completedBy: document.getElementById('completedBy').value,
+    };
+  }
+
+  // ── Review modal ─────────────────────────────────────────────
+  function reviewSheet() {
+    if (!validate()) {
+      const btn = document.querySelector('.submit-btn');
+      btn.textContent = 'Fix highlighted fields ↑';
+      setTimeout(() => btn.textContent = 'Review & Submit', 2000);
+      return;
+    }
+    const d = getFormData();
+    const row = (k, v) => v ? `<div class="preview-row"><div class="preview-key">${k}</div><div class="preview-val">${v}</div></div>` : '';
+    let html = '';
+    html += row('Rego', d.rego);
+    html += row('Fleet #', d.fleet);
+    html += row('Date', d.date);
+    html += row('Odometer', d.odometer || '—');
+    html += `<div style="margin:12px 0;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent)">Jobs</div>`;
+    d.jobs.forEach((j,i) => {
+      html += row(`Job ${i+1} — Problem`, j.problem);
+      html += row(`Job ${i+1} — Rectification`, j.rectification || '—');
+    });
+    html += `<div style="margin:12px 0;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent)">Labour</div>`;
+    d.labour.forEach(m => {
+      if (m.involvement === 'not set' || m.involvement === 'none') {
+        html += row(m.name, m.involvement === 'none' ? 'Not involved' : 'Not set');
+      } else {
+        html += row(m.name, `${m.involvement === 'full' ? 'Full shift' : 'Part shift'} — ${m.start} to ${m.finish} (${m.hrs ?? '—'} hrs)`);
+      }
+    });
+    if (d.parts.length) {
+      html += `<div style="margin:12px 0;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent)">Parts</div>`;
+      d.parts.forEach(p => { html += row(p.num || '—', `${p.desc} × ${p.qty}`); });
+    }
+    html += row('Completed by', d.completedBy);
+    if (d.notes) html += row('Notes', d.notes);
+    document.getElementById('previewBody').innerHTML = html;
+    document.getElementById('modalOverlay').classList.add('show');
+  }
+
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('show'); }
+
+  function submitSheet() {
+    closeModal();
+    const data = getFormData();
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyW2_Lav2baCUB-z0GBjYFwihjb8uVK1qToIt7EdLEsU7qHKmZVIAQQlyb9R9XeoDfxFQ/exec';
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(err => console.error('Submission error:', err));
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+  }
+
+  function resetForm() {
+    document.getElementById('successScreen').classList.remove('show');
+    document.getElementById('formContainer').style.display = 'block';
+    document.getElementById('jobEntries').innerHTML = '';
+    document.getElementById('partsEntries').innerHTML = '';
+    jobCount = 0; partCount = 0;
+    ['rego','fleet','odometer','notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('completedBy').value = '';
+    document.getElementById('jobDate').value = new Date().toISOString().split('T')[0];
+    mechanics.forEach(id => {
+      mechState[id] = { involvement: null, start:'', finish:'', hrs: null };
+      document.getElementById('badge_' + id).className = 'involvement-badge none';
+      document.getElementById('badge_' + id).textContent = 'Not set';
+      document.getElementById('pill_' + id).textContent = '— hrs';
+      document.getElementById('total_' + id).textContent = '—';
+      document.getElementById('body_' + id).classList.remove('open');
+      document.getElementById('card_' + id).classList.remove('active');
+      document.getElementById('times_' + id).style.display = 'grid';
+      document.getElementById('start_' + id).value = '';
+      document.getElementById('finish_' + id).value = '';
+      ['full','part','none'].forEach(l => {
+        document.getElementById(`inv_${id}_${l}`).className = 'inv-btn';
+      });
+    });
+    document.getElementById('combinedTotal').textContent = '— hrs';
+    ['transOilPart','transOilQty','diffOilPart','diffOilQty','greasePart','greaseQty',
+     'engineOilPart','engineOilQty','coolantPart','coolantQty'].forEach(id => document.getElementById(id).value = '');
+    addJob(); addPart();
+  }
+</script>
+
+
+</body></html>
