@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(1).html -->
+<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(2).html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -989,11 +989,7 @@
       <div class="field">
         <label>Completed by <span class="req">*</span></label>
         <select id="completedBy">
-          <option value="">— Select —</option>
-          <option>Mark Cummings</option>
-          <option>Tom Bellenger</option>
-          <option>Shane Guy</option>
-          <option>Jack Carboon</option>
+          <option value="">— Loading... —</option>
         </select>
       </div>
     </div>
@@ -1039,10 +1035,44 @@
     jack: { involvement: null, start: '', finish: '', hrs: null },
   };
 
-  window.onload = () => {
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyW2_Lav2baCUB-z0GBjYFwihjb8uVK1qToIt7EdLEsU7qHKmZVIAQQlyb9R9XeoDfxFQ/exec';
+
+  async function loadSettings() {
+    try {
+      const res = await fetch(SCRIPT_URL, { redirect: 'follow' });
+      const data = await res.json();
+      return data;
+    } catch(e) {
+      console.warn('Settings load failed:', e);
+      return null;
+    }
+  }
+
+  function populateSelect(id, items) {
+    const el = document.getElementById(id);
+    if (!el || !items) return;
+    const current = el.value;
+    el.innerHTML = '<option value="">— Select —</option>';
+    items.forEach(item => {
+      const opt = document.createElement('option');
+      opt.value = item; opt.textContent = item;
+      el.appendChild(opt);
+    });
+    if (current) el.value = current;
+  }
+
+  window.onload = async () => {
     document.getElementById('jobDate').value = new Date().toISOString().split('T')[0];
     addJob();
     addPart();
+    const settings = await loadSettings();
+    if (settings) {
+      populateSelect('completedBy', settings.mechanics);
+      // Update mechanic names in cards
+      const mechNames = { mark:'Mark Cummings', tom:'Tom Bellenger', shane:'Shane Guy', jack:'Jack Carboon' };
+      // Mechanic cards are hardcoded by ID — settings update completedBy dropdown only
+    }
   };
 
   // ── Mechanic cards ───────────────────────────────────────────
@@ -1259,12 +1289,21 @@
     closeModal();
     const data = getFormData();
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyW2_Lav2baCUB-z0GBjYFwihjb8uVK1qToIt7EdLEsU7qHKmZVIAQQlyb9R9XeoDfxFQ/exec';
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(err => console.error('Submission error:', err));
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = SCRIPT_URL;
+    form.target = 'hidden_iframe';
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'data';
+    input.value = JSON.stringify(data);
+    form.appendChild(input);
+    var iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
     document.getElementById('formContainer').style.display = 'none';
     document.getElementById('successScreen').classList.add('show');
   }
