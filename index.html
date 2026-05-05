@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(4).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Story Sheet — Workshop</title>
 <style>
@@ -686,7 +686,18 @@
       <h2>Problem / Cause / Rectification</h2>
     </div>
     <div class="section-body">
-      <div id="jobEntries"></div>
+      <div id="jobEntries"><div class="job-entry" id="job_1">
+      <div class="entry-num">Job #1</div>
+      
+      <div class="field">
+        <label>Problem <span class="req">*</span></label>
+        <textarea class="job-problem" placeholder="Describe the fault or service required..." style="min-height:60px"></textarea>
+      </div>
+      <div class="field">
+        <label>Rectification <span class="req">*</span></label>
+        <textarea class="job-rect" placeholder="What was done to fix it..." style="min-height:60px"></textarea>
+      </div>
+    </div></div>
       <button class="add-btn" onclick="addJob()">+ Add Job Entry</button>
     </div>
   </div>
@@ -705,7 +716,11 @@
         <span>Description</span>
         <span>Qty</span>
       </div>
-      <div id="partsEntries"></div>
+      <div id="partsEntries"><div class="parts-grid" id="part_1">
+      <input type="text" class="part-num" placeholder="Part #">
+      <input type="text" class="part-desc" placeholder="Description">
+      <input type="number" class="qty-input part-qty" placeholder="1" min="1" style="width:60px">
+    </div></div>
       <button class="add-btn" onclick="addPart()">+ Add Part</button>
     </div>
   </div>
@@ -794,7 +809,7 @@
 
       <!-- Mark -->
       <div class="mech-labour-card" id="card_mark">
-        <div class="mech-labour-header" onclick="toggleMechCard('mark')">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;mark&#39;)">
           <div class="mech-info">
             <div>
               <div class="mech-name-lbl">Mark Cummings</div>
@@ -808,18 +823,18 @@
         </div>
         <div class="mech-labour-body" id="body_mark">
           <div class="involvement-select">
-            <button class="inv-btn" id="inv_mark_full" onclick="setInvolvement('mark','full')">Full Shift</button>
-            <button class="inv-btn" id="inv_mark_part" onclick="setInvolvement('mark','part')">Part Shift</button>
-            <button class="inv-btn" id="inv_mark_none" onclick="setInvolvement('mark','none')">Not Involved</button>
+            <button class="inv-btn" id="inv_mark_full" onclick="setInvolvement(&#39;mark&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_mark_part" onclick="setInvolvement(&#39;mark&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_mark_none" onclick="setInvolvement(&#39;mark&#39;,&#39;none&#39;)">Not Involved</button>
           </div>
           <div class="time-row" id="times_mark">
             <div class="field">
               <label>Start</label>
-              <input type="time" id="start_mark" oninput="calcMechHrs('mark')">
+              <input type="time" id="start_mark" oninput="calcMechHrs(&#39;mark&#39;)">
             </div>
             <div class="field">
               <label>Finish</label>
-              <input type="time" id="finish_mark" oninput="calcMechHrs('mark')">
+              <input type="time" id="finish_mark" oninput="calcMechHrs(&#39;mark&#39;)">
             </div>
             <div class="field">
               <label>Total</label>
@@ -834,7 +849,7 @@
 
       <!-- Tom -->
       <div class="mech-labour-card" id="card_tom">
-        <div class="mech-labour-header" onclick="toggleMechCard('tom')">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;tom&#39;)">
           <div class="mech-info">
             <div>
               <div class="mech-name-lbl">Tom Bellenger</div>
@@ -848,18 +863,18 @@
         </div>
         <div class="mech-labour-body" id="body_tom">
           <div class="involvement-select">
-            <button class="inv-btn" id="inv_tom_full" onclick="setInvolvement('tom','full')">Full Shift</button>
-            <button class="inv-btn" id="inv_tom_part" onclick="setInvolvement('tom','part')">Part Shift</button>
-            <button class="inv-btn" id="inv_tom_none" onclick="setInvolvement('tom','none')">Not Involved</button>
+            <button class="inv-btn" id="inv_tom_full" onclick="setInvolvement(&#39;tom&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_tom_part" onclick="setInvolvement(&#39;tom&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_tom_none" onclick="setInvolvement(&#39;tom&#39;,&#39;none&#39;)">Not Involved</button>
           </div>
           <div class="time-row" id="times_tom">
             <div class="field">
               <label>Start</label>
-              <input type="time" id="start_tom" oninput="calcMechHrs('tom')">
+              <input type="time" id="start_tom" oninput="calcMechHrs(&#39;tom&#39;)">
             </div>
             <div class="field">
               <label>Finish</label>
-              <input type="time" id="finish_tom" oninput="calcMechHrs('tom')">
+              <input type="time" id="finish_tom" oninput="calcMechHrs(&#39;tom&#39;)">
             </div>
             <div class="field">
               <label>Total</label>
@@ -874,7 +889,7 @@
 
       <!-- Shane -->
       <div class="mech-labour-card" id="card_shane">
-        <div class="mech-labour-header" onclick="toggleMechCard('shane')">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;shane&#39;)">
           <div class="mech-info">
             <div>
               <div class="mech-name-lbl">Shane Guy</div>
@@ -888,18 +903,18 @@
         </div>
         <div class="mech-labour-body" id="body_shane">
           <div class="involvement-select">
-            <button class="inv-btn" id="inv_shane_full" onclick="setInvolvement('shane','full')">Full Shift</button>
-            <button class="inv-btn" id="inv_shane_part" onclick="setInvolvement('shane','part')">Part Shift</button>
-            <button class="inv-btn" id="inv_shane_none" onclick="setInvolvement('shane','none')">Not Involved</button>
+            <button class="inv-btn" id="inv_shane_full" onclick="setInvolvement(&#39;shane&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_shane_part" onclick="setInvolvement(&#39;shane&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_shane_none" onclick="setInvolvement(&#39;shane&#39;,&#39;none&#39;)">Not Involved</button>
           </div>
           <div class="time-row" id="times_shane">
             <div class="field">
               <label>Start</label>
-              <input type="time" id="start_shane" oninput="calcMechHrs('shane')">
+              <input type="time" id="start_shane" oninput="calcMechHrs(&#39;shane&#39;)">
             </div>
             <div class="field">
               <label>Finish</label>
-              <input type="time" id="finish_shane" oninput="calcMechHrs('shane')">
+              <input type="time" id="finish_shane" oninput="calcMechHrs(&#39;shane&#39;)">
             </div>
             <div class="field">
               <label>Total</label>
@@ -920,7 +935,7 @@
 
       <!-- Jack -->
       <div class="mech-labour-card" id="card_jack">
-        <div class="mech-labour-header" onclick="toggleMechCard('jack')">
+        <div class="mech-labour-header" onclick="toggleMechCard(&#39;jack&#39;)">
           <div class="mech-info">
             <div>
               <div class="mech-name-lbl">Jack Carboon</div>
@@ -934,18 +949,18 @@
         </div>
         <div class="mech-labour-body" id="body_jack">
           <div class="involvement-select">
-            <button class="inv-btn" id="inv_jack_full" onclick="setInvolvement('jack','full')">Full Shift</button>
-            <button class="inv-btn" id="inv_jack_part" onclick="setInvolvement('jack','part')">Part Shift</button>
-            <button class="inv-btn" id="inv_jack_none" onclick="setInvolvement('jack','none')">Not Involved</button>
+            <button class="inv-btn" id="inv_jack_full" onclick="setInvolvement(&#39;jack&#39;,&#39;full&#39;)">Full Shift</button>
+            <button class="inv-btn" id="inv_jack_part" onclick="setInvolvement(&#39;jack&#39;,&#39;part&#39;)">Part Shift</button>
+            <button class="inv-btn" id="inv_jack_none" onclick="setInvolvement(&#39;jack&#39;,&#39;none&#39;)">Not Involved</button>
           </div>
           <div class="time-row" id="times_jack">
             <div class="field">
               <label>Start</label>
-              <input type="time" id="start_jack" oninput="calcMechHrs('jack')">
+              <input type="time" id="start_jack" oninput="calcMechHrs(&#39;jack&#39;)">
             </div>
             <div class="field">
               <label>Finish</label>
-              <input type="time" id="finish_jack" oninput="calcMechHrs('jack')">
+              <input type="time" id="finish_jack" oninput="calcMechHrs(&#39;jack&#39;)">
             </div>
             <div class="field">
               <label>Total</label>
@@ -973,9 +988,7 @@
       </div>
       <div class="field">
         <label>Completed by <span class="req">*</span></label>
-        <select id="completedBy">
-          <option value="">— Loading... —</option>
-        </select>
+        <select id="completedBy"><option value="">— Select —</option><option value="Jack Carboon">Jack Carboon</option><option value="Mark Cummings">Mark Cummings</option><option value="Shane Guy">Shane Guy</option><option value="Tom Bellenger">Tom Bellenger</option></select>
       </div>
     </div>
   </div>
@@ -1003,8 +1016,8 @@
     </div>
     <div class="modal-body" id="previewBody"></div>
     <div class="modal-footer">
-      <button class="btn-back modal-footer" style="background:var(--panel);color:var(--text);border:1px solid var(--border);padding:12px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex:1;" onclick="closeModal()">← Back</button>
-      <button class="btn-confirm" style="background:var(--accent);color:var(--black);border:none;padding:12px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex:1;" onclick="submitSheet()">Confirm Submit</button>
+      <button class="btn-back modal-footer" style="background:var(--panel);color:var(--text);border:1px solid var(--border);padding:12px;border-radius:5px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex:1;" onclick="closeModal()">← Back</button>
+      <button class="btn-confirm" style="background:var(--accent);color:var(--black);border:none;padding:12px;border-radius:5px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex:1;" onclick="submitSheet()">Confirm Submit</button>
     </div>
   </div>
 </div>
@@ -1046,7 +1059,16 @@
     });
     if (current) el.value = current;
   }
-;
+
+  window.onload = async () => {
+    document.getElementById('jobDate').value = new Date().toISOString().split('T')[0];
+    addJob();
+    addPart();
+    const settings = await loadSettings();
+    if (settings) {
+      populateSelect('completedBy', settings.mechanics);
+    }
+  };
 
   // ── Mechanic cards ───────────────────────────────────────────
   function toggleMechCard(id) {
@@ -1311,5 +1333,6 @@
     addJob(); addPart();
   }
 </script>
-</body>
-</html>
+
+
+</body></html>
