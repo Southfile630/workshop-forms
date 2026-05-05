@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(2).html -->
+<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(3).html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -686,18 +686,7 @@
       <h2>Problem / Cause / Rectification</h2>
     </div>
     <div class="section-body">
-      <div id="jobEntries"><div class="job-entry" id="job_1">
-      <div class="entry-num">Job #1</div>
-      
-      <div class="field">
-        <label>Problem <span class="req">*</span></label>
-        <textarea class="job-problem" placeholder="Describe the fault or service required..." style="min-height:60px"></textarea>
-      </div>
-      <div class="field">
-        <label>Rectification <span class="req">*</span></label>
-        <textarea class="job-rect" placeholder="What was done to fix it..." style="min-height:60px"></textarea>
-      </div>
-    </div></div>
+      <div id="jobEntries"></div>
       <button class="add-btn" onclick="addJob()">+ Add Job Entry</button>
     </div>
   </div>
@@ -716,11 +705,7 @@
         <span>Description</span>
         <span>Qty</span>
       </div>
-      <div id="partsEntries"><div class="parts-grid" id="part_1">
-      <input type="text" class="part-num" placeholder="Part #">
-      <input type="text" class="part-desc" placeholder="Description">
-      <input type="number" class="qty-input part-qty" placeholder="1" min="1" style="width:60px">
-    </div></div>
+      <div id="partsEntries"></div>
       <button class="add-btn" onclick="addPart()">+ Add Part</button>
     </div>
   </div>
@@ -1038,15 +1023,21 @@
 
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyW2_Lav2baCUB-z0GBjYFwihjb8uVK1qToIt7EdLEsU7qHKmZVIAQQlyb9R9XeoDfxFQ/exec';
 
-  async function loadSettings() {
-    try {
-      const res = await fetch(SCRIPT_URL, { redirect: 'follow' });
-      const data = await res.json();
-      return data;
-    } catch(e) {
-      console.warn('Settings load failed:', e);
-      return null;
-    }
+  function loadSettings() {
+    return new Promise((resolve) => {
+      window._settingsCallback = function(data) {
+        resolve(data);
+        delete window._settingsCallback;
+        const s = document.getElementById('_settingsScript');
+        if (s) s.remove();
+      };
+      const script = document.createElement('script');
+      script.id = '_settingsScript';
+      script.src = SCRIPT_URL + '?callback=_settingsCallback';
+      script.onerror = () => resolve(null);
+      document.head.appendChild(script);
+      setTimeout(() => resolve(null), 5000);
+    });
   }
 
   function populateSelect(id, items) {
@@ -1062,11 +1053,11 @@
     if (current) el.value = current;
   }
 
-  window.onload = async () => {
+  window.onload = () => {
     document.getElementById('jobDate').value = new Date().toISOString().split('T')[0];
     addJob();
     addPart();
-    const settings = await loadSettings();
+    loadSettings().then(settings => {
     if (settings) {
       populateSelect('completedBy', settings.mechanics);
       // Update mechanic names in cards
