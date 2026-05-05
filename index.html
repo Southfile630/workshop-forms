@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(4).html -->
+<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(5).html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -988,7 +988,13 @@
       </div>
       <div class="field">
         <label>Completed by <span class="req">*</span></label>
-        <select id="completedBy"><option value="">— Select —</option><option value="Jack Carboon">Jack Carboon</option><option value="Mark Cummings">Mark Cummings</option><option value="Shane Guy">Shane Guy</option><option value="Tom Bellenger">Tom Bellenger</option></select>
+        <select id="completedBy">
+          <option value="">— Select —</option>
+          <option>Jack Carboon</option>
+          <option>Mark Cummings</option>
+          <option>Shane Guy</option>
+          <option>Tom Bellenger</option>
+        </select>
       </div>
     </div>
   </div>
@@ -1035,39 +1041,10 @@
 
 
   
-  const SETTINGS_URL = 'https://raw.githubusercontent.com/southfile630/workshop-forms/main/settings.json';
-
-  async function loadSettings() {
-    try {
-      const res = await fetch(SETTINGS_URL);
-      return await res.json();
-    } catch(e) {
-      console.warn('Settings load failed:', e);
-      return null;
-    }
-  }
-
-  function populateSelect(id, items) {
-    const el = document.getElementById(id);
-    if (!el || !items) return;
-    const current = el.value;
-    el.innerHTML = '<option value="">— Select —</option>';
-    items.forEach(item => {
-      const opt = document.createElement('option');
-      opt.value = item; opt.textContent = item;
-      el.appendChild(opt);
-    });
-    if (current) el.value = current;
-  }
-
-  window.onload = async () => {
+  window.onload = () => {
     document.getElementById('jobDate').value = new Date().toISOString().split('T')[0];
     addJob();
     addPart();
-    const settings = await loadSettings();
-    if (settings) {
-      populateSelect('completedBy', settings.mechanics);
-    }
   };
 
   // ── Mechanic cards ───────────────────────────────────────────
