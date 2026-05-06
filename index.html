@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(6).html -->
+<!-- saved from url=(0055)file:///C:/Users/Steve/Downloads/story_sheet%20(7).html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1261,21 +1261,12 @@
     closeModal();
     const data = getFormData();
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyW2_Lav2baCUB-z0GBjYFwihjb8uVK1qToIt7EdLEsU7qHKmZVIAQQlyb9R9XeoDfxFQ/exec';
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = SCRIPT_URL;
-    form.target = 'hidden_iframe';
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'data';
-    input.value = JSON.stringify(data);
-    form.appendChild(input);
-    var iframe = document.createElement('iframe');
-    iframe.name = 'hidden_iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    document.body.appendChild(form);
-    form.submit();
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(err => console.error('Submission error:', err));
     document.getElementById('formContainer').style.display = 'none';
     document.getElementById('successScreen').classList.add('show');
   }
